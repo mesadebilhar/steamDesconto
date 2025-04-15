@@ -33,7 +33,7 @@ app.get('/promocao', async(req,res)=>{
                 desconto: jogo.discount_percent + '%',
                 preço: 'R$' + (jogo.final_price/100).toFixed(2)
             }));
-            const promocoesfuturas = data.coming_soon.items.map(
+            const jogosFuturos = data.coming_soon.items.map(
                 jogo => ({
                     nome: jogo.name,       
                 }));
@@ -43,7 +43,7 @@ app.get('/promocao', async(req,res)=>{
             // });
             // html += '</body>';
             // res.send(html);
-            res.json(promocoesfuturas)
+            res.json(jogosFuturos)
             res.json(promocoes);
     } catch (error) {
         res.status(500).json({error: 'não foi possível buscar as promoções'})
