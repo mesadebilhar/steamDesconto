@@ -1,0 +1,57 @@
+:root{
+    background-color: #4F5946;
+    display: flex;
+    flex-direction: column;
+    font-family: IBM_VGA;
+}
+@font-face {
+    font-family: IBM_VGA;
+    src: url(WebPlus_ToshibaSat_8x16.woff);
+}
+.secao{
+    border: #7a8d6e 3px inset;
+    outline: 2px outset #7a8d6e;
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.secao > h1{
+    color:orangered;
+    align-self: center;
+    letter-spacing: 2px;
+    text-shadow: 3px 2px black;
+}
+.linha{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.promoEspecial{
+    color: rgb(255, 255, 255);
+    box-sizing: content-box;
+    background-color: #222c19;
+    width: fit-content;
+    height: fit-content;
+    /*#222c19*/
+    border:#7a8d6e outset 2px;
+    margin: 4px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+}
+.promoEspecial > h2{
+    font-weight: normal;
+    align-self: center;
+    margin: 4px;
+}
+
+.promoEspecial >p{
+    margin: 2px;
+}
+
+#precoOriginal{
+    text-decoration: line-through;
+}
