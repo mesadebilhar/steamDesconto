@@ -64,3 +64,11 @@
 .ofertasDiariasSemanais{
 
 }
+
+button{
+    height: fit-content;
+    width: fit-content;
+    background-color: orangered;
+    font-family: IBM_VGA;
+    font-size: larger;
+}
