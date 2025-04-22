@@ -27,6 +27,7 @@
     flex-direction: row;
     gap: 20px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .promoEspecial{
@@ -41,11 +42,15 @@
     padding: 8px;
     display: flex;
     flex-direction: column;
+
+
 }
 .promoEspecial > h2{
     font-weight: normal;
     align-self: center;
     margin: 4px;
+    max-width: 35ch; /*Dá para colocar uma largura limite baseado em caracteres! Descoberta interessante*/
+    text-align: center;
 }
 
 .promoEspecial >p{
@@ -54,4 +59,8 @@
 
 #precoOriginal{
     text-decoration: line-through;
+}
+
+.ofertasDiariasSemanais{
+
 }

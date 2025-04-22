@@ -16,6 +16,7 @@ app.get('/promocao', async(req,res)=>{
             const { data } = await axios.get(promocoesUrl);
 
             const promocoes = data.specials.items.map(jogo => ({
+                id: jogo.id,
                 nome: jogo.name,
                 desconto: jogo.discount_percent + '%',
                 preco: 'R$'+(jogo.original_price/100).toFixed(2),
@@ -25,11 +26,13 @@ app.get('/promocao', async(req,res)=>{
 
             const jogosFuturos = data.coming_soon.items.map(
                 jogoFuturo => ({
+                    id: jogoFuturo.id,
                     nome: jogoFuturo.name,  
                     imagem: jogoFuturo.header_image     
                 }));
 
             const lancamentos = data.new_releases.items.map(lancamentos=>({
+                id: lancamentos.id,
                 nome: lancamentos.name,
                 imagem: lancamentos.header_image,
                 Preco_atual: 'R$' + (lancamentos.final_price/100).toFixed(2),
