@@ -4,8 +4,6 @@ const path = require('path'); //Segundo a documentação do node e express, pode
 //com base no nome do arquivo ou da pasta, o que é ótimo para criar apps cross-plataform, já que o diretório funciona diferente do linux/macos para o windows
 const { default: axios } = require('axios'); //usa para fazer requisições
 const port = 3000;
-// const steamAPIkey = ('CHAVE');
-// const tokenAcesso = ('TOKEN_ACESSO');
 app.use('/', express.static(path.join(__dirname, 'public')));
 
 app.get('/promocao', async(req,res)=>{
@@ -31,22 +29,23 @@ app.get('/promocao', async(req,res)=>{
                     imagem: jogoFuturo.header_image     
                 }));
 
-            const lancamentos = data.new_releases.items.map(lancamentos=>({
-                id: lancamentos.id,
-                nome: lancamentos.name,
-                imagem: lancamentos.header_image,
-                Preco_atual: 'R$' + (lancamentos.final_price/100).toFixed(2),
-                Preco_original: 'R$' + (lancamentos.original_price/100).toFixed(2)
+            const lancamentos = data.new_releases.items.map(lancamento=>({
+                id: lancamento.id,
+                nome: lancamento.name,
+                imagem: lancamento.header_image,
+                Preco_atual: !lancamento.final_price ? "Gratuito" : 'R$' + (lancamento.final_price/100).toFixed(2),
+                Preco_original: !lancamento.original_price  ? "teste" : 'R$' + (lancamento.original_price/100).toFixed(2),
+                // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_NOT Valores vazios viram positivos e saciam a condição true
             }));
 
             const ofertas = [];
-            for(i = 0; i<6; i++){
+            for(i = 0; i<6; i++){ //Esse magic number ai de 6 é pq no site que usei de referência tinha oferta até 6, às vezes pode ter menos ou mais
                 ofertas.push(...data[i].items.map(ofertas=>({
                     duracao_da_oferta: ofertas.body,
                     url: ofertas.url,
                     imagem: ofertas.header_image
                 })));
-            }
+            } 
 
             res.json({
                 ofertasSemanaisDiarias: ofertas, //Aqui inclue as ofertas semanais e diárias, geralmente vem bundle ou só jogo aleatório
