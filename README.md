@@ -16,7 +16,7 @@ Ferramentas usadas no projeto:
 ## Como fazer a instalação e usar
 **1º passo:** Abra o terminal clone o repositório
 ```
-git clone https://github.com/mesadebilhar/
+git clone https://github.com/mesadebilhar/steamDesconto.git
 ```
 **2º passo:** Com o terminal aberto, entre diretório com os arquivos e rode o servidor
 ```
