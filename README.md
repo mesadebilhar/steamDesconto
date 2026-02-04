@@ -21,7 +21,8 @@ git clone https://github.com/mesadebilhar/steamDesconto.git
 **2º passo:** Com o terminal aberto, entre diretório com os arquivos e rode o servidor
 ```
 cd steamDesconto
-node index.js
+npm install
+npm run start
 ```
 **3º passo:** Abra seu navegador e entre no localhost:3000 e voilá.
 
@@ -37,4 +38,3 @@ node index.js
 
 **Dicas:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring <-- Pode ser útil na hora de lidar com array de listas.
 
-Ignore o node_modules no repositório, eu esqueci de tirar ele do .gitignore.

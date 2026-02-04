@@ -13,7 +13,7 @@ app.get('/promocao', async(req,res)=>{
         `;
             const { data } = await axios.get(promocoesUrl);
 
-            const promocoes = data.specials.items.map(jogo => ({
+            const promocoes = data.specials?.items.map(jogo => ({
                 id: jogo.id,
                 nome: jogo.name,
                 desconto: jogo.discount_percent + '%',
@@ -22,14 +22,14 @@ app.get('/promocao', async(req,res)=>{
                 imagem: jogo.header_image
             }));
 
-            const jogosFuturos = data.coming_soon.items.map(
+            const jogosFuturos = data.coming_soon?.items.map(
                 jogoFuturo => ({
                     id: jogoFuturo.id,
                     nome: jogoFuturo.name,  
                     imagem: jogoFuturo.header_image     
                 }));
 
-            const lancamentos = data.new_releases.items.map(lancamento=>({
+            const lancamentos = data.new_releases?.items.map(lancamento=>({
                 id: lancamento.id,
                 nome: lancamento.name,
                 imagem: lancamento.header_image,
@@ -40,11 +40,11 @@ app.get('/promocao', async(req,res)=>{
 
             const ofertas = [];
             for(i = 0; i<6; i++){ //Esse magic number ai de 6 é pq no site que usei de referência tinha oferta até 6, às vezes pode ter menos ou mais
-                ofertas.push(...data[i].items.map(ofertas=>({
+                ofertas.push(...data[i]?.items.map(ofertas=>({
                     duracao_da_oferta: ofertas.body,
                     url: ofertas.url,
                     imagem: ofertas.header_image
-                })));
+                }))?? []);
             } 
 
             res.json({
@@ -54,10 +54,10 @@ app.get('/promocao', async(req,res)=>{
                 jogosalancar: jogosFuturos //Jogos que ainda vão lançar
             });
     } catch (error) {
-        res.status(500).json({error: 'não foi possível buscar as promoções'})
+        res.status(500).json({error: `não foi possível buscar as promoções: ${error.message}`})
     }
 })
 
 
 app.listen(port);
-console.log(`App sendo executado na porta: ${port}`);
+console.log(`App aberto em: http://localhost:${port}`);
